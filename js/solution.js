@@ -26,73 +26,72 @@
             i++;
         }
         while (y < maze.length - 1){
-            
             current = [x,y];
-        switch (flag){
-            case "d":{
-                if (maze[y][x - 1] == 0){
-                    funX(current, -1);
-                    flag = "l";
-                } else if(maze[y + 1][x] == 0){
-                    funY(current, 1);
+            switch (flag){
+                case "d":{
+                    if (maze[y][x - 1] == 0){
+                        funX(current, -1);
+                        flag = "l";
+                    } else if(maze[y + 1][x] == 0){
+                        funY(current, 1);
+                    }
+                    else  if (maze[y][x + 1] == 0){
+                        funX(current , 1);
+                        flag = "r";
+                    } else {
+                        funY(current, -1);
+                        flag = "u";
+                    }
+                    break;
                 }
-                else  if (maze[y][x + 1] == 0){
-                    funX(current , 1);
-                    flag = "r";
-                } else {
-                    funY(current, -1);
-                    flag = "u";
+                case "r":{
+                    if (maze[y + 1][x] == 0){
+                        funY(current, 1);
+                        flag = "d";
+                    } else if(maze[y][x + 1] == 0){
+                        funX(current, 1);
+                    }else if (maze[y - 1][x] == 0){
+                        funY(current, -1);
+                        flag = "u";
+                    } else {
+                        funX(current, -1);
+                        flag = "l";
+                    }
+                    break;
                 }
-                break;
+                case "l":{
+                    if (maze[y - 1][x] == 0){
+                        funY(current, -1);
+                        flag = "u";
+                    } else if(maze[y][x - 1] == 0){
+                        funX(current, -1);
+                    }else if (maze[y + 1][x] == 0){
+                        funY(current, 1);
+                        flag = "d";
+                    } else {
+                        funX(current, 1);
+                        flag = "r";
+                    }
+                    break;
+                }
+                case "u": {
+                    if (maze[y][x + 1] == 0){
+                        funX(current, 1);
+                        flag = "r";
+                    } else if(maze[y - 1][x] == 0){
+                        funY(current, -1);
+                    }else if (maze[y][x - 1] == 0){
+                        funX(current, -1);
+                        flag = "l";
+                    } else {
+                        funY(current, 1);
+                        flag = "d";
+                    }
+                    break;
+                }
+                default: break;
             }
-            case "r":{
-                if (maze[y + 1][x] == 0){
-                    funY(current, 1);
-                    flag = "d";
-                } else if(maze[y][x + 1] == 0){
-                    funX(current, 1);
-                }else if (maze[y - 1][x] == 0){
-                    funY(current, -1);
-                    flag = "u";
-                } else {
-                    funX(current, -1);
-                    flag = "l";
-                }
-                break;
-            }
-            case "l":{
-                if (maze[y - 1][x] == 0){
-                    funY(current, -1);
-                    flag = "u";
-                } else if(maze[y][x - 1] == 0){
-                    funX(current, -1);
-                }else if (maze[y + 1][x] == 0){
-                    funY(current, 1);
-                    flag = "d";
-                } else {
-                    funX(current, 1);
-                    flag = "r";
-                }
-                break;
-            }
-            case "u": {
-                if (maze[y][x + 1] == 0){
-                    funX(current, 1);
-                    flag = "r";
-                } else if(maze[y - 1][x] == 0){
-                    funY(current, -1);
-                }else if (maze[y][x - 1] == 0){
-                    funX(current, -1);
-                    flag = "l";
-                } else {
-                    funY(current, 1);
-                    flag = "d";
-                }
-                break;
-            }
-            default: break;
-        }
-        i++;
+            i++;
         }
         function funX(current, index){
             point = [x + index * 1,y];

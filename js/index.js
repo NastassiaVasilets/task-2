@@ -4,13 +4,11 @@
 	var tempPath = [],
     	i = 0;
 	setInterval(function(){
-    		if (i < path.length){
-                document.querySelector('.outer').innerHTML = "";
-    	tempPath[i] = path[i];
-    	document.querySelector('.outer').appendChild(
-        	root.maze.render(map, tempPath)
-    	);
-    	i++;
+    	if (i < path.length){
+            document.querySelector('.outer').innerHTML = "";
+    	   tempPath[i] = path[i];
+    	   document.querySelector('.outer').appendChild(root.maze.render(map, tempPath));
+    	   i++;
     	}
     },1);
 })(this);
