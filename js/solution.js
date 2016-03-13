@@ -19,69 +19,71 @@
             i = 1,
             flag = "d",
             current = [x,y];
-        p[0] = [x,y];
+            p[0] = [x,y];
         while(maze[y + 1][x] == 0){
-            current = fun3(current);
+            funY(current, 1);
         }
         while (y < maze.length - 1){
+        i++;
+        current = [x,y];
         switch (flag){
             case "d":{
                 if (maze[y][x - 1] == 0){
-                    current = fun1(current);
+                    funX(current, -1);
                     flag = "l";
                 } else if(maze[y + 1][x] == 0){
-                    current = fun3(current);
+                    funY(current, 1);
                 }
                 else  if (maze[y][x + 1] == 0){
-                    current = fun2(current);
+                    funX(current , 1);
                     flag = "r";
                 } else {
-                    current = fun4(current);
+                    funY(current, -1);
                     flag = "u";
                 }
                 break;
             }
             case "r":{
                 if (maze[y + 1][x] == 0){
-                    current = fun3(current);
+                    funY(current, 1);
                     flag = "d";
                 } else if(maze[y][x + 1] == 0){
-                    current = fun2(current);
+                    funX(current, 1);
                 }else if (maze[y - 1][x] == 0){
-                    current = fun4(current);
+                    funY(current, -1);
                     flag = "u";
                 } else {
-                    current = fun1(current);
+                    funX(current, -1);
                     flag = "l";
                 }
                 break;
             }
             case "l":{
                 if (maze[y - 1][x] == 0){
-                    current = fun4(current);
+                    funY(current, -1);
                     flag = "u";
                 } else if(maze[y][x - 1] == 0){
-                    current = fun1(current);
+                    funX(current, -1);
                 }else if (maze[y + 1][x] == 0){
-                    current = fun3(current);
+                    funY(current, 1);
                     flag = "d";
                 } else {
-                    current = fun2(current);
+                    funX(current, 1);
                     flag = "r";
                 }
                 break;
             }
             case "u": {
                 if (maze[y][x + 1] == 0){
-                    fun2(current);
+                    funX(current, 1);
                     flag = "r";
                 } else if(maze[y - 1][x] == 0){
-                    fun4(current);
+                    funY(current, -1);
                 }else if (maze[y][x - 1] == 0){
-                    fun1(current);
+                    funX(current, -1);
                     flag = "l";
                 } else {
-                    fun3(current);
+                    funY(current, 1);
                     flag = "d";
                 }
                 break;
@@ -89,37 +91,15 @@
             default: break;
         }
         }
-        function fun1(current){
-            point = [x - 1,y];
+        function funX(current, index){
+            point = [x + index * 1,y];
+            x = x + index;
             p[i] = point;
-            i++;
-            x--;
-            current = [x,y];
-            return current;
         }
-        function fun2(current){
-            point = [x + 1,y];
+        function funY(current, index){
+            point = [x,y + index * 1];
+            y = y + index;
             p[i] = point;
-            i++;
-            x++;
-            current = [x,y];
-            return current;
-        }
-        function fun3(current){
-            point = [x,y + 1];
-            p[i] = point;
-            i++;
-            y++;
-            current = [x,y];
-            return current;
-        }
-        function fun4(current){
-            point = [x, y - 1];
-            p[i] = point;
-            i++;
-            y--;
-            current = [x,y];
-            return current;
         }
         return p;
     }
