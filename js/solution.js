@@ -21,11 +21,13 @@
             current = [x,y];
             p[0] = [x,y];
         while(maze[y + 1][x] == 0){
+            current = [x,y];
             funY(current, 1);
+            i++;
         }
         while (y < maze.length - 1){
-        i++;
-        current = [x,y];
+            
+            current = [x,y];
         switch (flag){
             case "d":{
                 if (maze[y][x - 1] == 0){
@@ -90,6 +92,7 @@
             }
             default: break;
         }
+        i++;
         }
         function funX(current, index){
             point = [x + index * 1,y];
